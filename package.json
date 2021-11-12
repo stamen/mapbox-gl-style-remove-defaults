@@ -1,0 +1,29 @@
+{
+  "name": "mapbox-gl-style-remove-defaults",
+  "version": "0.1.0",
+  "description": "Remove properties with default values from Mapbox GL styles",
+  "source": "src/index.js",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "scripts": {
+    "watch": "parcel watch",
+    "build": "parcel build",
+    "test": "jest --watchAll"
+  },
+  "author": "Stamen Design",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/mapbox-gl-style-spec": "^13.23.0",
+    "yargs": "^17.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@parcel/babel-preset-env": "^2.0.1",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
+    "parcel": "^2.0.1"
+  },
+  "bin": {
+    "mapbox-gl-style-remove-defaults": "bin/mapbox-gl-style-remove-defaults"
+  }
+}
