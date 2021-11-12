@@ -8,18 +8,20 @@ const { removeDefaults } = require('../dist/main');
 
 const argv = yargs(hideBin(process.argv))
   .usage('Usage: $0 infile outfile')
-  .demandCommand(2)
   .example('$0 style.json style-with-no-defaults.json')
   .parse();
 
-fs.readFile(argv._[0], 'utf8', (err, data) => {
+let inFile = argv._[0] ? argv._[0] : process.stdin.fd;
+let outFile = argv._[1] ? argv._[1] : process.stdout.fd;
+
+fs.readFile(inFile, 'utf8', (err, data) => {
   if (err) {
     console.error(err);
     process.exit(1);
   }
 
   const inStyle = JSON.parse(data);
-  fs.writeFile(argv._[1], JSON.stringify(removeDefaults(inStyle), null, 2), err => {
+  fs.writeFile(outFile, JSON.stringify(removeDefaults(inStyle), null, 2), err => {
     if (err) {
       console.error(err);
       process.exit(1);
