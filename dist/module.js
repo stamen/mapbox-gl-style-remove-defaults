@@ -1,33 +1,33 @@
-import {latest as $lN7Lq$latest} from "@mapbox/mapbox-gl-style-spec";
+import {latest as $5OpyM$latest} from "@mapbox/mapbox-gl-style-spec";
 
 
-var $f80b596e60a7aedf$var$removeObjectDefaults = (input, objectReference)=>{
+const $7d6e8c4aede379c0$var$removeObjectDefaults = (input, objectReference)=>{
     return Object.fromEntries(Object.entries(input).filter((_ref)=>{
-        var [key, value] = _ref;
+        let [key, value] = _ref;
         if (!objectReference.hasOwnProperty(key)) return true;
         return value !== objectReference[key].default;
     }));
 };
-var $f80b596e60a7aedf$var$removeLayerDefaults = (layer)=>{
-    var newLayer = $f80b596e60a7aedf$var$removeObjectDefaults(layer, $lN7Lq$latest['layer']);
-    if (layer.layout) newLayer.layout = $f80b596e60a7aedf$var$removeObjectDefaults(layer.layout, $lN7Lq$latest["layout_".concat(layer.type)]);
-    if (layer.paint) newLayer.paint = $f80b596e60a7aedf$var$removeObjectDefaults(layer.paint, $lN7Lq$latest["paint_".concat(layer.type)]);
+const $7d6e8c4aede379c0$var$removeLayerDefaults = (layer)=>{
+    const newLayer = $7d6e8c4aede379c0$var$removeObjectDefaults(layer, (0, $5OpyM$latest)["layer"]);
+    if (layer.layout) newLayer.layout = $7d6e8c4aede379c0$var$removeObjectDefaults(layer.layout, (0, $5OpyM$latest)[`layout_${layer.type}`]);
+    if (layer.paint) newLayer.paint = $7d6e8c4aede379c0$var$removeObjectDefaults(layer.paint, (0, $5OpyM$latest)[`paint_${layer.type}`]);
     return newLayer;
 };
-var $f80b596e60a7aedf$var$removeRootDefaults = (source)=>{
-    return $f80b596e60a7aedf$var$removeObjectDefaults(source, $lN7Lq$latest['$root']);
+const $7d6e8c4aede379c0$var$removeRootDefaults = (source)=>{
+    return $7d6e8c4aede379c0$var$removeObjectDefaults(source, (0, $5OpyM$latest)["$root"]);
 };
-var $f80b596e60a7aedf$var$removeSourceDefaults = (source)=>{
-    return $f80b596e60a7aedf$var$removeObjectDefaults(source, $lN7Lq$latest["source_".concat(source.type)]);
+const $7d6e8c4aede379c0$var$removeSourceDefaults = (source)=>{
+    return $7d6e8c4aede379c0$var$removeObjectDefaults(source, (0, $5OpyM$latest)[`source_${source.type}`]);
 };
-var $f80b596e60a7aedf$export$2e2bcd8739ae039 = (style)=>{
-    var newStyle = $f80b596e60a7aedf$var$removeRootDefaults(style);
-    if (style.layers) newStyle.layers = style.layers.map($f80b596e60a7aedf$var$removeLayerDefaults);
+var $7d6e8c4aede379c0$export$2e2bcd8739ae039 = (style)=>{
+    const newStyle = $7d6e8c4aede379c0$var$removeRootDefaults(style);
+    if (style.layers) newStyle.layers = style.layers.map($7d6e8c4aede379c0$var$removeLayerDefaults);
     if (style.sources) newStyle.sources = Object.fromEntries(Object.entries(style.sources).map((_ref2)=>{
-        var [name, value] = _ref2;
+        let [name, value] = _ref2;
         return [
             name,
-            $f80b596e60a7aedf$var$removeSourceDefaults(value)
+            $7d6e8c4aede379c0$var$removeSourceDefaults(value)
         ];
     }));
     return newStyle;
@@ -36,5 +36,5 @@ var $f80b596e60a7aedf$export$2e2bcd8739ae039 = (style)=>{
 
 
 
-export {$f80b596e60a7aedf$export$2e2bcd8739ae039 as removeDefaults};
+export {$7d6e8c4aede379c0$export$2e2bcd8739ae039 as removeDefaults};
 //# sourceMappingURL=module.js.map
