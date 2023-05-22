@@ -18,7 +18,9 @@ const $7d6e8c4aede379c0$var$removeRootDefaults = (source)=>{
     return $7d6e8c4aede379c0$var$removeObjectDefaults(source, (0, $5OpyM$latest)["$root"]);
 };
 const $7d6e8c4aede379c0$var$removeSourceDefaults = (source)=>{
-    return $7d6e8c4aede379c0$var$removeObjectDefaults(source, (0, $5OpyM$latest)[`source_${source.type}`]);
+    let sourceType = source.type; // Handle raster-dem exception due to its key in the style spec
+    if (sourceType === "raster-dem") sourceType = "raster_dem";
+    return $7d6e8c4aede379c0$var$removeObjectDefaults(source, (0, $5OpyM$latest)[`source_${sourceType}`]);
 };
 var $7d6e8c4aede379c0$export$2e2bcd8739ae039 = (style)=>{
     const newStyle = $7d6e8c4aede379c0$var$removeRootDefaults(style);
