@@ -23,7 +23,9 @@ const $5659a747108741f2$var$removeRootDefaults = (source)=>{
     return $5659a747108741f2$var$removeObjectDefaults(source, (0, $gXNCa$mapboxmapboxglstylespec.latest)["$root"]);
 };
 const $5659a747108741f2$var$removeSourceDefaults = (source)=>{
-    return $5659a747108741f2$var$removeObjectDefaults(source, (0, $gXNCa$mapboxmapboxglstylespec.latest)[`source_${source.type}`]);
+    let sourceType = source.type; // Handle raster-dem exception due to its key in the style spec
+    if (sourceType === "raster-dem") sourceType = "raster_dem";
+    return $5659a747108741f2$var$removeObjectDefaults(source, (0, $gXNCa$mapboxmapboxglstylespec.latest)[`source_${sourceType}`]);
 };
 var $5659a747108741f2$export$2e2bcd8739ae039 = (style)=>{
     const newStyle = $5659a747108741f2$var$removeRootDefaults(style);

@@ -1,12 +1,11 @@
-import { latest as reference } from "@mapbox/mapbox-gl-style-spec";
+import { latest as reference } from '@mapbox/mapbox-gl-style-spec';
 
 const removeObjectDefaults = (input, objectReference) => {
   return Object.fromEntries(
-    Object.entries(input)
-      .filter(([key, value]) => {
-        if (!objectReference.hasOwnProperty(key)) return true;
-        return value !== objectReference[key].default;
-      })
+    Object.entries(input).filter(([key, value]) => {
+      if (!objectReference.hasOwnProperty(key)) return true;
+      return value !== objectReference[key].default;
+    })
   );
 };
 
@@ -28,14 +27,19 @@ const removeLayerDefaults = layer => {
   }
 
   return newLayer;
-}
+};
 
 const removeRootDefaults = source => {
   return removeObjectDefaults(source, reference['$root']);
 };
 
 const removeSourceDefaults = source => {
-  return removeObjectDefaults(source, reference[`source_${source.type}`]);
+  let sourceType = source.type;
+  // Handle raster-dem exception due to its key in the style spec
+  if (sourceType === 'raster-dem') {
+    sourceType = 'raster_dem';
+  }
+  return removeObjectDefaults(source, reference[`source_${sourceType}`]);
 };
 
 export default style => {
